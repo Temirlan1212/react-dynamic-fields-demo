@@ -3,8 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTheme } from "next-themes";
-import Image from "next/image";
 import Link from "next/link";
+import reactElementToJSXString from "react-element-to-jsx-string";
 
 export const HeroSection = () => {
   const { theme } = useTheme();
@@ -55,7 +55,7 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        <div className="relative group mt-14">
+        {/* <div className="relative group mt-14">
           <div className="absolute top-2 lg:-top-8 left-1/2 transform -translate-x-1/2 w-[90%] mx-auto h-24 lg:h-80 bg-primary/50 rounded-full blur-3xl"></div>
           <Image
             width={1200}
@@ -70,8 +70,21 @@ export const HeroSection = () => {
           />
 
           <div className="absolute bottom-0 left-0 w-full h-20 md:h-28 bg-gradient-to-b from-background/0 via-background/50 to-background rounded-lg"></div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
 };
+
+export const HeroSectionCode = () => `
+"use client";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import reactElementToJSXString from "react-element-to-jsx-string";
+
+${reactElementToJSXString(HeroSection())}
+`;

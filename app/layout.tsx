@@ -27,7 +27,7 @@ export default function RootLayout({
         >
           <Navbar />
 
-          {children}
+          <div className="container mt-10">{children}</div>
         </ThemeProvider>
       </body>
     </html>
