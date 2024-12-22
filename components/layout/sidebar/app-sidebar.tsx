@@ -82,6 +82,20 @@ const data = {
           },
         },
         {
+          title: "input-example.tsx",
+          metadata: {
+            icon: File,
+            href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.INPUT}`,
+          },
+        },
+        {
+          title: "select-example.tsx",
+          metadata: {
+            icon: File,
+            href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.SELECT}`,
+          },
+        },
+        {
           title: "ui",
           open: true,
           children: [
@@ -89,14 +103,14 @@ const data = {
               title: "input.tsx",
               metadata: {
                 icon: File,
-                href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.INPUT}`,
+                href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.INPUT_FIELD}`,
               },
             },
             {
               title: "select.tsx",
               metadata: {
                 icon: File,
-                href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.SELECT}`,
+                href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.SELECT_FIELD}`,
               },
             },
           ],

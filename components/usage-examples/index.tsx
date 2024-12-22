@@ -22,8 +22,15 @@ import {
   ReactDynamicFieldsFormWithStepsExample,
   reactDynamicFieldsFormWithStepsExampleCodeBlock,
 } from "@/components/usage-examples/react-dynamic-fields-form-with-steps-example";
+import {
+  reactDynamicFieldsInputFieldCodeBlock,
+  ReactDynamicFieldsSelectField,
+  reactDynamicFieldsSelectFieldCodeBlock,
+} from "./ui";
 
 export const USAGE_EXAMPLE_KEYS = {
+  INPUT_FIELD: "input-field",
+  SELECT_FIELD: "select-field",
   INPUT: "input",
   SELECT: "select",
   STYLE: "style",
@@ -33,6 +40,18 @@ export const USAGE_EXAMPLE_KEYS = {
 } as const;
 
 export const USAGE_EXAMPLES = {
+  [USAGE_EXAMPLE_KEYS.INPUT_FIELD]: {
+    component: null,
+    code: reactDynamicFieldsInputFieldCodeBlock, // Replace with actual code block content or import
+    title: "Example of build custom input",
+    description: "You can use any library, in this case we use shadcn.",
+  },
+  [USAGE_EXAMPLE_KEYS.SELECT_FIELD]: {
+    component: null,
+    code: reactDynamicFieldsSelectFieldCodeBlock,
+    title: "Example of build custom select",
+    description: "You can use any library, in this case we use shadcn.",
+  },
   [USAGE_EXAMPLE_KEYS.INPUT]: {
     component: <ReactDynamicFieldsInputBasicExample />,
     code: reactDynamicFieldsInputBasicExampleCodeBlock, // Replace with actual code block content or import
