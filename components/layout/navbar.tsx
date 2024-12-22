@@ -26,7 +26,7 @@ interface RouteProps {
   title: string;
 }
 
-const routeList: RouteProps[] = [NAV_ITEMS.faq, NAV_ITEMS.docs];
+const routeList: RouteProps[] = [NAV_ITEMS.faq, NAV_ITEMS.docsExamples];
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
