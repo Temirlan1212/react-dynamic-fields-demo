@@ -5,9 +5,33 @@ import {
   ComponentPreview,
   ComponentPreviewProps,
 } from "@/components/ui/component-preview";
-import { USAGE_EXAMPLES } from "@/components/usage-examples";
+import {
+  USAGE_EXAMPLE_KEYS,
+  USAGE_EXAMPLES,
+} from "@/components/usage-examples";
 import { useHash } from "@/hooks/use-hash";
 import { useIsMounted } from "@/hooks/use-is-mounted";
+
+const FIELDS_TABS: ComponentPreviewProps["tabs"] = [
+  {
+    type: "code",
+    content: USAGE_EXAMPLES[USAGE_EXAMPLE_KEYS.INPUT_FIELD].code,
+    tabTitle: "Input-field",
+    tabValue: USAGE_EXAMPLE_KEYS.INPUT_FIELD || "code-block",
+    description:
+      USAGE_EXAMPLES[USAGE_EXAMPLE_KEYS.INPUT_FIELD].description ||
+      "You can see code block of preview tab",
+  },
+  {
+    type: "code",
+    content: USAGE_EXAMPLES[USAGE_EXAMPLE_KEYS.SELECT_FIELD].code,
+    tabTitle: "Select-field",
+    tabValue: USAGE_EXAMPLE_KEYS.SELECT_FIELD || "code-block",
+    description:
+      USAGE_EXAMPLES[USAGE_EXAMPLE_KEYS.SELECT_FIELD].description ||
+      "You can see code block of preview tab",
+  },
+];
 
 export function Content() {
   const hash = useHash();
@@ -33,23 +57,20 @@ export function Content() {
               description: example.description,
             });
 
-          return (
-            <ComponentPreview
-              key={key}
-              tabs={[
-                ...tabs,
-                {
-                  type: "code",
-                  content: example.code,
-                  tabTitle: "Code",
-                  tabValue: example.title || "code-block",
-                  description:
-                    example.description ||
-                    "You can see code block of preview tab",
-                },
-              ]}
-            />
-          );
+          tabs.push({
+            type: "code",
+            content: example.code,
+            tabTitle: "Code",
+            tabValue: key || "code-block",
+            title: example.title,
+            description:
+              example.description || "You can see code block of preview tab",
+          });
+
+          if (!FIELDS_TABS.map((field) => field.tabValue).includes(key))
+            tabs.push(...FIELDS_TABS);
+
+          return <ComponentPreview key={key} tabs={tabs} />;
         }
       })}
     </>
