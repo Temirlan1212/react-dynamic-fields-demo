@@ -46,7 +46,7 @@ export function ComponentPreview({
       {...props}
     >
       <Tabs defaultValue={defaultValue} className="w-full">
-        <TabsList className="flex border border-secondary w-fit">
+        <TabsList className="flex border border-secondary w-fit mb-4">
           {triggers.map(({ title, value }, index) => (
             <TabsTrigger value={value} key={index + value}>
               {title}
@@ -79,7 +79,7 @@ export function ComponentPreview({
 
                 <div className="border-b border-secondary" />
 
-                <div className="max-h-[500px] overflow-y-auto">
+                <div className="overflow-y-auto">
                   <CodeBlock code={content} language={language} />
                 </div>
               </TabsContent>

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronRight, File, Folder, Home } from "lucide-react";
+import { ChevronRight, File, FileQuestion, Folder, Home } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -21,93 +21,66 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { USAGE_EXAMPLE_KEYS } from "@/components/usage-examples";
+import { NAV_ITEMS } from "@/lib/contacts";
+import { REACT_DYNAMIC_FIELDS_SCHEMA_DOCS_SIDEBAR_TREE } from "@/components/docs";
+import Link from "next/link";
 
 const data = {
   navMain: [
     {
-      title: "Home",
+      title: NAV_ITEMS.landingPage.title,
       state: "",
       icon: Home,
-      href: "/",
+      href: NAV_ITEMS.landingPage.href,
+    },
+
+    {
+      title: NAV_ITEMS.faq.title,
+      state: "",
+      icon: FileQuestion,
+      href: NAV_ITEMS.faq.href,
     },
   ],
   tree: [
     {
-      title: "app",
-      metadata: {
-        icon: Folder,
-        href: "/app",
-      },
-      open: false,
-      children: [
-        {
-          title: "api",
-          metadata: {
-            icon: Folder,
-            href: "/app/api",
-          },
-          open: false,
-          children: [
-            {
-              title: "hello",
-              metadata: {
-                icon: Folder,
-                href: "/app/api/hello",
-              },
-              open: true,
-              children: [
-                {
-                  title: "route.ts",
-                  metadata: {
-                    icon: File,
-                    href: "/app/api/hello/route",
-                  },
-                },
-              ],
-            },
-            {
-              title: "page.tsx",
-              metadata: {
-                icon: File,
-                href: "/app/page",
-              },
-            },
-            {
-              title: "layout.tsx",
-              metadata: {
-                icon: File,
-                href: "/app/layout",
-              },
-            },
-            {
-              title: "blog",
-              metadata: {
-                icon: Folder,
-                href: "/app/blog",
-              },
-              open: false,
-              children: [
-                {
-                  title: "page.tsx",
-                  metadata: {
-                    icon: File,
-                    href: "/app/blog/page",
-                  },
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
       title: "usage-examples",
-      metadata: {
-        icon: Folder,
-        href: `/examples#${USAGE_EXAMPLE_KEYS.CONDITIONS}`,
-      },
       open: true,
       children: [
+        {
+          title: "all-examples.tsx",
+          metadata: {
+            icon: File,
+            href: `${NAV_ITEMS.docsExamples.href}#`,
+          },
+        },
+        {
+          title: "style-example.tsx",
+          metadata: {
+            icon: File,
+            href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.STYLE}`,
+          },
+        },
+        {
+          title: "stepper-example.tsx",
+          metadata: {
+            icon: File,
+            href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.FORM_WITH_STEPS}`,
+          },
+        },
+        {
+          title: "basic-conditions.tsx",
+          metadata: {
+            icon: File,
+            href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.CONDITIONS}`,
+          },
+        },
+        {
+          title: "form-conditions.tsx",
+          metadata: {
+            icon: File,
+            href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.FORM_CONDITIONS}`,
+          },
+        },
         {
           title: "ui",
           open: true,
@@ -116,20 +89,21 @@ const data = {
               title: "input.tsx",
               metadata: {
                 icon: File,
-                href: `/examples#${USAGE_EXAMPLE_KEYS.INPUT}`,
+                href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.INPUT}`,
               },
             },
             {
               title: "select.tsx",
               metadata: {
                 icon: File,
-                href: `/examples#${USAGE_EXAMPLE_KEYS.SELECT}`,
+                href: `${NAV_ITEMS.docsExamples.href}#${USAGE_EXAMPLE_KEYS.SELECT}`,
               },
             },
           ],
         },
       ],
     },
+    REACT_DYNAMIC_FIELDS_SCHEMA_DOCS_SIDEBAR_TREE,
   ],
 };
 
@@ -144,10 +118,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {data.navMain.map((item, index) => (
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton asChild>
-                    <a href={item.href} className="flex items-center gap-2">
+                    <Link href={item.href} className="flex items-center gap-2">
                       {item.icon && <item.icon />}
                       {item.title}
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                   <SidebarMenuBadge>{item.state}</SidebarMenuBadge>
                 </SidebarMenuItem>
@@ -177,11 +151,14 @@ function Tree({ item }: { item: (typeof data.tree)[0] }) {
 
   if (!children?.length) {
     return (
-      <SidebarMenuButton asChild className="data-[active=true]:bg-transparent">
+      <SidebarMenuButton
+        asChild
+        className="data-[active=true]:bg-transparent text-balance"
+      >
         {metadata?.href ? (
-          <a href={metadata.href} className="flex items-center gap-2">
+          <a href={metadata.href} className="flex items-center gap-2 h-auto ">
             <Icon />
-            {title}
+            <p className="break-all">{title}</p>
           </a>
         ) : (
           <>
@@ -201,15 +178,15 @@ function Tree({ item }: { item: (typeof data.tree)[0] }) {
       >
         <CollapsibleTrigger asChild>
           <SidebarMenuButton>
-            <ChevronRight className="transition-transform" />
+            <ChevronRight className="transition-transform text-balance" />
             <Icon />
             {title}
           </SidebarMenuButton>
         </CollapsibleTrigger>
         <CollapsibleContent>
           <SidebarMenuSub>
-            {children.map((subItem, index) => (
-              <Tree key={index} item={subItem as any} />
+            {children.map((subItem: any, index: number) => (
+              <Tree key={index} item={subItem} />
             ))}
           </SidebarMenuSub>
         </CollapsibleContent>

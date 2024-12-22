@@ -1,6 +1,3 @@
-import { InstallationSection } from "@/components/layout/sections/installation";
-import { ComponentPreview } from "@/components/ui/component-preview";
-import { USAGE_EXAMPLES } from "@/components/usage-examples";
 import { Content } from "./content";
 
 export const metadata = {

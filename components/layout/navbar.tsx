@@ -19,23 +19,14 @@ import {
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ToggleTheme } from "./toogle-theme";
-import { CONTACTS } from "@/lib/contacts";
+import { CONTACTS, NAV_ITEMS } from "@/lib/contacts";
 
 interface RouteProps {
   href: string;
-  label: string;
+  title: string;
 }
 
-const routeList: RouteProps[] = [
-  {
-    href: "/#faq",
-    label: "FAQ",
-  },
-  {
-    href: "examples",
-    label: "Examples",
-  },
-];
+const routeList: RouteProps[] = [NAV_ITEMS.faq, NAV_ITEMS.docs];
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -70,7 +61,7 @@ export const Navbar = () => {
               </SheetHeader>
 
               <div className="flex flex-col gap-2">
-                {routeList.map(({ href, label }) => (
+                {routeList.map(({ href, title }) => (
                   <Button
                     key={href}
                     onClick={() => setIsOpen(false)}
@@ -78,7 +69,7 @@ export const Navbar = () => {
                     variant="ghost"
                     className="justify-start text-base"
                   >
-                    <Link href={href}>{label}</Link>
+                    <Link href={href}>{title}</Link>
                   </Button>
                 ))}
               </div>
@@ -97,10 +88,10 @@ export const Navbar = () => {
       <NavigationMenu className="hidden lg:block mx-auto">
         <NavigationMenuList>
           <NavigationMenuItem>
-            {routeList.map(({ href, label }) => (
+            {routeList.map(({ href, title }) => (
               <NavigationMenuLink key={href} asChild>
                 <Link href={href} className="text-base px-2">
-                  {label}
+                  {title}
                 </Link>
               </NavigationMenuLink>
             ))}

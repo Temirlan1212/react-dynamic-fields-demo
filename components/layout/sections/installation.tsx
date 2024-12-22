@@ -1,8 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
 import { CopyButton } from "@/components/ui/copy-button";
-import { Icon } from "@/components/ui/icon";
-import { icons } from "lucide-react";
 
 interface BenefitsProps {
   icon: string;
@@ -37,7 +34,7 @@ const benefitList: BenefitsProps[] = [
   },
 ];
 
-export const InstallationSection = () => {
+export const GetStartedSection = () => {
   return (
     <section id="installation">
       <h2 className="text-lg text-primary mb-2 tracking-wider">Installation</h2>
