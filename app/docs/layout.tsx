@@ -17,7 +17,7 @@ export default function Layout({ children }: Readonly<PropsWithChildren>) {
       <SidebarProvider
         style={
           {
-            "--sidebar-width": "280px",
+            "--sidebar-width": "320px",
             "--sidebar-width-icon": "5rem",
           } as React.CSSProperties
         }
