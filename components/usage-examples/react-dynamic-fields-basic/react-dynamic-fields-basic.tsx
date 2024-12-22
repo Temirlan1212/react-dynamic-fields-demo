@@ -118,7 +118,7 @@ const fieldsSchemaExtended: ReactDynamicFieldsSchema = [
   },
   ...fieldsSchema,
 ];
-const stateName = "newForm-2";
+const stateName = "state";
 
 export function ReactDynamicFieldsBasicExample() {
   return (
@@ -143,6 +143,8 @@ export function ReactDynamicFieldsBasicExample() {
                         renderFields={({ fieldName }) => {
                           return {
                             input: ({
+                              style,
+                              className,
                               value,
                               fieldErrorMessage,
                               label,
@@ -152,9 +154,10 @@ export function ReactDynamicFieldsBasicExample() {
                                 <div
                                   className={cn(
                                     "flex flex-col gap-2 grow",
+                                    className || "",
                                     styles?.className || ""
                                   )}
-                                  style={styles?.style}
+                                  style={styles?.style || style}
                                 >
                                   {label}
                                   <Input
@@ -211,7 +214,6 @@ export function ReactDynamicFieldsBasicExample() {
                                       );
 
                                       if (!option) return;
-                                      console.log(option, fieldName);
 
                                       controller.updateFieldValue({
                                         fieldName,

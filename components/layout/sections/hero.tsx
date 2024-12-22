@@ -1,13 +1,11 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CONTACTS } from "@/lib/contacts";
 import { ArrowRight } from "lucide-react";
-import { useTheme } from "next-themes";
 import Link from "next/link";
-import reactElementToJSXString from "react-element-to-jsx-string";
 
 export const HeroSection = () => {
-  const { theme } = useTheme();
   return (
     <section className="container w-full">
       <div className="grid place-items-center lg:max-w-screen-xl gap-8 mx-auto py-20 md:py-32">
@@ -16,40 +14,40 @@ export const HeroSection = () => {
             <span className="mr-2 text-primary">
               <Badge>New</Badge>
             </span>
-            <span> Design is out now! </span>
+            <span> Try it out now! </span>
           </Badge>
 
           <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
             <h1>
               Experience the
               <span className="text-transparent px-2 bg-gradient-to-r from-[#D247BF] to-primary bg-clip-text">
-                Shadcn
+                React Dynamic Fields
               </span>
-              landing page
+              core
             </h1>
           </div>
 
           <p className="max-w-screen-sm mx-auto text-xl text-muted-foreground">
-            {`We're more than just a tool, we're a community of passionate
-            creators. Get access to exclusive resources, tutorials, and support.`}
+            Build dynamic, customizable forms with React Dynamic Fields core. It
+            integrates seamlessly with React, react-hook-form, and Tailwind CSS,
+            offering flexibility for creating complex forms with conditional
+            fields and validation.
           </p>
 
           <div className="space-y-4 md:space-y-0 md:space-x-4">
-            <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
-              Get Started
-              <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
-            </Button>
-
+            <Link href="examples">
+              <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
+                Examples
+                <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
             <Button
               asChild
               variant="secondary"
               className="w-5/6 md:w-1/4 font-bold"
             >
-              <Link
-                href="https://github.com/nobruf/shadcn-landing-page.git"
-                target="_blank"
-              >
-                Github respository
+              <Link href={CONTACTS.github} target="_blank">
+                Documentation
               </Link>
             </Button>
           </div>
@@ -75,16 +73,3 @@ export const HeroSection = () => {
     </section>
   );
 };
-
-export const HeroSectionCode = () => `
-"use client";
-
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { useTheme } from "next-themes";
-import Link from "next/link";
-import reactElementToJSXString from "react-element-to-jsx-string";
-
-${reactElementToJSXString(HeroSection())}
-`;
